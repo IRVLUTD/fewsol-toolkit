@@ -1,0 +1,5 @@
+eye_on_hand: true
+robot_effector_frame: /measured/panda_hand
+tracking_base_frame: /measured/camera_color_optical_frame
+transformation: {qw: 0.7182116422267757, qx: 0.016333297635292354, qy: 0.010996322012974747,
+  qz: 0.6955460741463947, x: 0.04253322227958818, y: -0.03414890498307623, z: 0.06035263861136299}
