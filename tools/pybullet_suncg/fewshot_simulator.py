@@ -147,8 +147,8 @@ class FewshotSimulator(sim.Simulator):
             ### Select random table ###
             while True:
                 model_dir = np.random.choice(self.params['valid_tables'])
-                model_dir = os.path.join(self._shapenet_data_dir_base, model_dir)
-                table_mesh_filename = model_dir + '/model_normalized.processed.obj'
+                model_dir = self._shapenet_data_dir_base + self.params['taxonomy_dict']['table'] + '/' + model_dir + '/'
+                table_mesh_filename = model_dir + 'models/model_normalized.obj'
                 if os.path.exists(table_mesh_filename):
                     break
 
@@ -158,7 +158,8 @@ class FewshotSimulator(sim.Simulator):
             ### Create table object in pybullet ### 
             # Note: up direction is +Y axis in ShapeNet models
             table_obj_id = 'ShapeNet_table_0'
-            table_transform = Transform(rotation=Quaternion(axis=[1, 0, 0], angle=-np.pi/2))
+            # table_transform = Transform(rotation=Quaternion(axis=[1, 0, 0], angle=-np.pi/2))
+            table_transform = Transform()
             print('table mesh:', table_mesh_filename)
             table_body = self.add_mesh(table_obj_id, table_mesh_filename, table_transform, table_mesh_filename)
 
@@ -279,11 +280,11 @@ class FewshotSimulator(sim.Simulator):
                 obj_type = 'ycb'
                 while True:
                     model_dir = np.random.choice(self.params['ycb_object_ids'])
-                    model_dir = os.path.join(self._shapenet_data_dir_base, model_dir)
-                    obj_mesh_filename = os.path.join(model_dir, 'model_normalized.obj')
+                    model_dir = os.path.join(self._google_dir_base, model_dir)
+                    obj_mesh_filename = os.path.join(model_dir, 'meshes/model.obj')
                     if os.path.exists(obj_mesh_filename):
                         if obj_mesh_filename not in obj_mesh_filenames:
-                            obj_mesh_filenames.append(os.path.join(model_dir, 'model_normalized.obj'))
+                            obj_mesh_filenames.append(os.path.join(model_dir, 'meshes/model.obj'))
                             break
 
                 ### Create an object in pybullet ###

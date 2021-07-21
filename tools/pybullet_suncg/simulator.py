@@ -41,7 +41,7 @@ class Simulator:
             to a dictionary and the depth maps/labels/images are calculated and saved to disk.
     """
     def __init__(self, mode='direct', bullet_server_binary=None, suncg_data_dir_base=None, 
-                 shapenet_data_dir_base=None, params=dict(), verbose=False):
+                 shapenet_data_dir_base=None, google_dir_base=None, params=dict(), verbose=False):
         self._mode = mode
         self._verbose = verbose
         module_dir = os.path.dirname(os.path.abspath(__file__))
@@ -59,6 +59,7 @@ class Simulator:
             self._bullet_server_binary = bullet_server_binary
         else:
             self._bullet_server_binary = os.path.join(module_dir, '..', 'bullet_shared_memory_server')
+        self._google_dir_base = google_dir_base
 
         # Load object class mapping. Assues ModelCategoryMapping.csv lives in suncg_data_dir_base
         self.object_class_mapping = pandas.read_csv(suncg_data_dir_base + 'ModelCategoryMapping.csv')
@@ -241,9 +242,9 @@ class Simulator:
         if texture_file != '':
             texture = p.loadTexture(texture_file)
             p.changeVisualShape(bid, -1, textureUniqueId=texture)
-        else:
-            rgba_color = sim_util.random_color()
-            p.changeVisualShape(bid, -1, rgbaColor=rgba_color)
+        # else:
+        #    rgba_color = sim_util.random_color()
+        #    p.changeVisualShape(bid, -1, rgbaColor=rgba_color)
 
         body = Body(id=obj_id, bid=bid, vid=vid, cid=cid, static=static)
         self._obj_id_to_body[obj_id] = body
@@ -750,8 +751,9 @@ class Simulator:
     def load_sn_obj(self, object_desc, potential_obj_id):
         """ Load a single object. Helper function for self.load_objects()
         """
-        if not object_desc['mesh_filename'].startswith(self._shapenet_data_dir_base):
-            object_desc['mesh_filename'] = self._shapenet_data_dir_base + object_desc['mesh_filename']
+        # if not object_desc['mesh_filename'].startswith(self._shapenet_data_dir_base):
+        #    object_desc['mesh_filename'] = self._shapenet_data_dir_base + object_desc['mesh_filename']
+
         if 'obj_id' not in object_desc:
             obj_id = potential_obj_id
             object_desc['obj_id'] = obj_id
