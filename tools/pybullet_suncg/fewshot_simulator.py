@@ -694,6 +694,7 @@ class FewshotSimulator(sim.Simulator):
         obj_frame_depth = transform_matrix.dot(world_frame_depth.reshape(-1,4).T)
         obj_frame_depth = obj_frame_depth.T.reshape((H,W,4))[..., :3] # Shape: [H x W x 3]
 
+        '''
         # Get tabletop. Compute histogram of 1cm y-values and pick mode of histogram. 
         # It's kinda like RANSAC in 1 dimension, but using a discretization instead of randomness.
         highest_z_val = round(np.max(obj_frame_depth[table_mask, 2]) + 0.05, 2)
@@ -708,8 +709,24 @@ class FewshotSimulator(sim.Simulator):
         tabletop_mask = np.logical_and(obj_frame_depth[..., 2] >= tabletop_z_low, 
                                        obj_frame_depth[..., 2] <= tabletop_z_high)
         tabletop_mask = np.logical_and(tabletop_mask, table_mask) # Make sure tabletop_mask is subset of table
+        '''
+
+
+        # Get tabletop. Compute histogram of 1cm y-values and pick mode of histogram. 
+        # It's kinda like RANSAC in 1 dimension, but using a discretization instead of randomness.
+        highest_y_val = round(np.max(obj_frame_depth[table_mask, 1]) + 0.05, 2)
+        bin_count, bin_edges = np.histogram(obj_frame_depth[table_mask, 1], 
+                                            bins=int(highest_y_val / .01), 
+                                            range=(0,highest_y_val))
+        bin_index = np.argmax(bin_count)
+        tabletop_y_low = bin_edges[bin_index-1] # a bit less than lower part
+        tabletop_y_high = bin_edges[bin_index + 2] # a bit more than higher part
+        tabletop_mask = np.logical_and(obj_frame_depth[..., 1] >= tabletop_y_low, 
+                                       obj_frame_depth[..., 1] <= tabletop_y_high)
+        tabletop_mask = np.logical_and(tabletop_mask, table_mask) # Make sure tabletop_mask is subset of table
 
         return tabletop_mask
+
 
     def get_camera_images(self, camera_pos, lookat_pos, camera_up_vector=None, compute_predicates=False):
         """ Get RGB/Depth/Segmentation images

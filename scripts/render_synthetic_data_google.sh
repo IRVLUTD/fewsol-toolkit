@@ -8,7 +8,7 @@ SHAPENET_DIR=/capri/ShapeNetCore.v2/
 GOOGLE_DIR=/capri/google_scan_selected/
 TEXTURE_DIR=/capri/textures/
 COCO_DIR=/capri/coco/train2014/train2014/
-SAVE_PATH=/home/yuxiang/GitLab/few-shot-dataset/data/google_scenes/
+SAVE_PATH=/capri/google_scenes/
 
 TABLETOP_TRAIN_START=0
 # TABLETOP_TRAIN_END=20000
