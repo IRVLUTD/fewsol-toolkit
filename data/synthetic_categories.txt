@@ -1,0 +1,125 @@
+C clamp
+CD
+airplane
+alarm clock
+android
+backpack
+ball
+basket
+bear
+bell
+boot
+bottle
+bowl
+bulb box
+butter dish
+cable
+cake pan
+can opener
+candy bar
+cardboard box
+cereal box
+chair
+coffee box
+coffee can
+coffee marker
+cooker
+cow
+cream box
+cream tube
+cup
+dinosaur
+dog
+doll
+dragon
+drink box
+eagle
+elephant
+file sorter
+flash drive
+flashlight
+flower pot
+flower stand
+fly pan
+food can
+game card box
+game controller
+game tape
+garden swing
+gift box
+hair dryer
+hair straightener
+hammer
+hanger
+hard drive
+hat
+headphone
+helmet
+high heel shoe
+honey dipper
+horse
+jug
+kettle
+keyboard
+ladybug
+lamp
+laptop
+lens
+letter holder
+lion
+lunch bag
+lunch box
+medicine box
+milk bottle
+mouse
+mouse pad
+mug
+panda
+paper roll
+pencil case
+pencil holder
+pet dish
+pill bottle
+pill box
+plate
+portable drive
+pot
+product box
+racoon
+ramekin
+refrigerator
+rhino
+rubber band
+sanitary pads
+saucer
+scissors
+screwdriver
+shark
+sheep
+shoe
+sink
+slipper
+smartphone printer
+snack box
+sofa
+spatula
+speaker
+sponge
+spoon
+sprinkler
+squirrel
+storage box
+sushi mat
+table
+tablet
+tape
+teapot
+toaster
+towel
+trash bin
+tray
+unicon
+utensil holder
+whale
+wood box
+wood tower

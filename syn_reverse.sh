@@ -11,6 +11,7 @@ cp $DST/layers/*.py layers/
 cp $DST/layers/*.cu layers/
 cp $DST/layers/*.cpp layers/
 
+cp $DST/data/*.txt data/
 cp $DST/planning/*.py planning/
 cp $DST/ros/* ros/
 cp $DST/scripts/* scripts/
