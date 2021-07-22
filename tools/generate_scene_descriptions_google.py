@@ -118,6 +118,9 @@ def get_simulation_params(args):
 
     ##### list google models #####
     google_objects = os.listdir(args.google_dir)
+    num = len(google_objects)
+    google_perm = np.random.permutation(num)
+    google_index = 0
 
     # List of texture images
     textures = []
@@ -152,8 +155,8 @@ def get_simulation_params(args):
         'valid_tables' : train_tables, 
         'max_table_height' : 1.0, # measured in meters
         'min_table_height' : 0.75, 
-        'max_table_size' : 1.2,
-        'min_table_size' : 0.8,
+        'max_table_size' : 1.5,
+        'min_table_size' : 1.0,
         'table_init_factor' : 0.9, # this multiplicative factor limits how close you can initialize to wall
 
         # cabinet stuff
@@ -162,6 +165,8 @@ def get_simulation_params(args):
         # object stuff
         'shapenet_object_ids' : train_models, 
         'ycb_object_ids' : google_objects, 
+        'ycb_object_perm' : google_perm,
+        'ycb_object_index' : google_index,
         'max_xratio' : 1/4,
         'max_yratio' : 1/4,
         'max_zratio' : 1/3,

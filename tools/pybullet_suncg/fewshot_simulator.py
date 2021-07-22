@@ -279,7 +279,11 @@ class FewshotSimulator(sim.Simulator):
             if sample < ycb_obj_p:
                 obj_type = 'ycb'
                 while True:
-                    model_dir = np.random.choice(self.params['ycb_object_ids'])
+                    if i == 0:
+                        ind = self.params['ycb_object_perm'][self.params['ycb_object_index']]
+                        model_dir = self.params['ycb_object_ids'][ind]
+                    else:
+                        model_dir = np.random.choice(self.params['ycb_object_ids'])
                     model_dir = os.path.join(self._google_dir_base, model_dir)
                     obj_mesh_filename = os.path.join(model_dir, 'meshes/model.obj')
                     if os.path.exists(obj_mesh_filename):
@@ -450,6 +454,11 @@ class FewshotSimulator(sim.Simulator):
 
             # If we get here, then object has successfully by initialized
             obj_ids.append(obj_id)
+            if obj_type == 'ycb' and i == 0:
+                self.params['ycb_object_index'] += 1
+                if self.params['ycb_object_index'] >= len(self.params['ycb_object_ids']):
+                    self.params['ycb_object_index'] = 0
+                    self.params['ycb_object_perm'] = np.random.permutation(len(self.params['ycb_object_ids']))
             i += 1
 
 
