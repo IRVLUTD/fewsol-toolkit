@@ -220,35 +220,35 @@ def check_dir(direc):
 def main():
 
     args = parse_arguments()
-    simulation_params = get_simulation_params(args)
 
     save_dir = args.save_path + 'train/'
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
         
     # Calculate missing scenes
-    temp = os.listdir(save_dir)
-    temp1 = [int(x.split('_')[1]) for x in temp]
-    missing_scenes = set(range(int(args.start_scene), int(args.end_scene))).difference(set(temp1)) 
-    missing_scenes = sorted(list(missing_scenes))
-    print('missing_scenes: ', missing_scenes )
+    # temp = os.listdir(save_dir)
+    # temp1 = [int(x.split('_')[1]) for x in temp]
+    # missing_scenes = set(range(int(args.start_scene), int(args.end_scene))).difference(set(temp1)) 
+    # missing_scenes = sorted(list(missing_scenes))
+    # print('missing_scenes: ', missing_scenes )
 
     # Calculate missing scenes
-    # temp = sorted(os.listdir(save_dir))
-    # missing_scenes = []
-    # for scene_num in range(int(args.start_scene), int(args.end_scene)):
-    #    direct = f'scene_{scene_num:05d}'
-    #    if direct in temp:
-    #        directory_contents = os.listdir(save_dir + direct)
-    #        if not check_dir(directory_contents):
-    #            missing_scenes.append(scene_num)
-    # print('missing_scenes: ', missing_scenes, len(missing_scenes))
+    temp = sorted(os.listdir(save_dir))
+    missing_scenes = []
+    for scene_num in range(int(args.start_scene), int(args.end_scene)):
+        direct = f'scene_{scene_num:05d}'
+        if direct in temp:
+            directory_contents = os.listdir(save_dir + direct)
+            if not check_dir(directory_contents):
+                missing_scenes.append(scene_num)
+    print('missing_scenes: ', missing_scenes, len(missing_scenes))
 
     #### Actual Data Generation #####
     for scene_num in missing_scenes:
         
         # Sample scene
         try:
+            simulation_params = get_simulation_params(args)
             sim = fewshot_sim.FewshotSimulator(
                     mode='gui', 
                     suncg_data_dir_base=args.suncg_dir, 
@@ -286,7 +286,7 @@ def main():
         with open(scene_description_filename, 'w') as save_file:
             json.dump(scene_description, save_file)    
 
-        printout(f"Generated scene {scene_num}!", args.logfile)
+        printout(f"=======Generated scene {scene_num}!", args.logfile)
         sim.disconnect()
 
 if __name__ == '__main__':

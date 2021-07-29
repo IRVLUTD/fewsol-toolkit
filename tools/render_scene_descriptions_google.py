@@ -76,6 +76,7 @@ def main():
             directory_contents = os.listdir(save_dir + direct)
             if not check_dir(directory_contents):
                 missing_scenes.append(scene_num)
+    print('start scene %d, end scene %d' % (int(args.start_scene), int(args.end_scene)))
     print('missing_scenes: ', missing_scenes, len(missing_scenes))
 
     #### Actual Data Generation #####
@@ -102,8 +103,11 @@ def main():
 
         # load scene
         sim.load_house_room(scene_description)
+        print('loaded house room')
         sim.load_table(scene_description)
+        print('loaded table')
         sim.load_objects(scene_description)
+        print('loaded objects')
 
         scene_description['views'][f'background+{args.scenario}+objects'] = []
         valid_views = False
@@ -112,6 +116,7 @@ def main():
         while not valid_views:
             
             if num_tries > simulation_params['max_initialization_tries']:
+                print('exceed number of tries')
                 break # this will force the entire scene to start over
             num_tries += 1
             print('num_tries: ', num_tries)
@@ -154,7 +159,7 @@ def main():
             json.dump(scene_description, save_file)    
 
         # increment
-        printout(f"Generated scene {scene_num}!", args.logfile)
+        print("============Generated scene {%d}!=============" % scene_num)
         sim.disconnect()
 
 

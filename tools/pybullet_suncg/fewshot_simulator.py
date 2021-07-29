@@ -789,9 +789,10 @@ class FewshotSimulator(sim.Simulator):
                 object_bids.append(v.bid)
                 index = self.shapenet_obj_stuff['obj_ids'].index(k)
                 object_name = self.shapenet_obj_stuff['obj_mesh_filenames'][index]
+                print(object_name)
                 subnames = object_name.split('/')
                 if len(subnames) > 1:
-                    object_name = subnames[-2].strip()
+                    object_name = subnames[-3].strip()
                 else:
                     object_name = subnames[-1].strip()
                 object_names.append(object_name)

@@ -11,9 +11,9 @@ COCO_DIR=/capri/coco/train2014/train2014/
 SAVE_PATH=/capri/google_scenes/
 
 TABLETOP_TRAIN_START=0
-# TABLETOP_TRAIN_END=20000
-TABLETOP_TRAIN_END=4
-INTERVAL=50 # Used for image generation
+TABLETOP_TRAIN_END=40000
+#TABLETOP_TRAIN_END=4
+INTERVAL=1 # Used for image generation
 
 ######## IMAGE GENERATION (sequential) ########
 
@@ -22,16 +22,15 @@ python3.6 tools/render_scene_descriptions_google.py train fewshot $TABLETOP_TRAI
        --shapenet_dir $SHAPENET_DIR --texture_dir $TEXTURE_DIR --coco_dir $COCO_DIR --save_path $SAVE_PATH
 
 # Generate tabletop RGBD/Seg images w/ GUI sequentially
-# for ((i = $TABLETOP_TRAIN_START; i < $TABLETOP_TRAIN_END; i += $INTERVAL)); do
+#for ((i = $TABLETOP_TRAIN_START; i < $TABLETOP_TRAIN_END; i += $INTERVAL)); do
 
 #    batch_start=$i;
 #    batch_end=$(($i + $INTERVAL));
 #    if [ $batch_end -gt $TABLETOP_TRAIN_END ]; then
-#    batch_end=$TABLETOP_TRAIN_END;
+#        batch_end=$TABLETOP_TRAIN_END;
 #    fi
 
-#    python3.6 tools/render_scene_descriptions_fewshot.py train fewshot $batch_start $batch_end \
-#           --suncg_dir $SUNCG_DIR \
+#    python3.6 tools/render_scene_descriptions_google.py train fewshot $batch_start $batch_end \
+#           --suncg_dir $SUNCG_DIR --google_dir $GOOGLE_DIR \
 #           --shapenet_dir $SHAPENET_DIR --texture_dir $TEXTURE_DIR --coco_dir $COCO_DIR --save_path $SAVE_PATH;
-
 #done
