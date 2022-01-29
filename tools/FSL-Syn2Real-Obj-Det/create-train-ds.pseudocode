@@ -1,0 +1,25 @@
+Training
+    - synthetic dataset (Support Set)
+        - ls
+            - iterate over each folder (name of the folder can be used for linking with Google scenes dataset)
+                - the name.txt contains the class name
+                    - create a directory of the same in 
+                - Get .jpg files from the folder (RGB)
+                    - extract file-name
+                    - split using "-", get first element, i.e. f
+                    - f-label-binary.png is the mask 
+                    - crop the image using the mask and save in the 
+    - google scenes dataset (Query Set)
+        - ls
+            - for each scene
+                - Read scene_description.txt (json)
+                    - "object_descriptions" enumeration will give the id of th object (iterator + 2 [background+table])
+                    - Mark the particular id as 1 and rest as 0
+                    - crop it, m place it in output dir query set class
+                        - mesh_filename
+                            - split using ("\"), get third element
+                    - log scene_name, subscene_id, object_id
+                - Read .jpg files
+                    - split using "_", get second element, i.e. code
+                    - "segmentation + "_" + code + ".png" = mask   
+                
