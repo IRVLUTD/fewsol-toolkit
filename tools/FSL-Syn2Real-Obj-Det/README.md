@@ -1,14 +1,3 @@
-# IRVL-3D-FSL
-UTD IRVL 3D Few Shot Learning Project
-
-### Supervisor: [Dr. Yu Xiang](https://yuxng.github.io/)
-
-### Tenure: Fall'21-Present
-- Part of 
-  - Independent Study (CS 6V81, Spring'22)
-  - Computer Vision (CS 6384, Spring'22)
-  - Lab Work (Fall'21, Spring'22)
-
 ### Setup
 ```bash
 # Install dependencies
