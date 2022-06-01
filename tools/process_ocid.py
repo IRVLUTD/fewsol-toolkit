@@ -56,7 +56,7 @@ def save_data(save_dir, object_id, im, im_label, im_box, meta):
 if __name__ == "__main__":
     dataset_dir = '../data/OCID/'
     save_dir = '../data/OCID_objects/'
-    is_show = False
+    is_show = True
 
     # list subdirs
     seqs = list_dataset(dataset_dir)
@@ -114,10 +114,6 @@ if __name__ == "__main__":
             meta['max_label'] = max_label
             meta['label'] = label
 
-            # save data
-            save_data(save_dir, object_id, im, im_label, im_box, meta)
-            object_id += 1
-
             if is_show:
                 fig = plt.figure()
                 ax = fig.add_subplot(2, 2, 1)
@@ -140,3 +136,7 @@ if __name__ == "__main__":
                 ax.set_title('label')
                 plt.axis('off')
                 plt.show()
+            else:
+                # save data
+                save_data(save_dir, object_id, im, im_label, im_box, meta)
+            object_id += 1
