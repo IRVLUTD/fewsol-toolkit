@@ -37,9 +37,7 @@ def crop(mask, orig_img):
     '''
     Crop masked segment of original image
     '''
-    # print("1", mask)
     mask = cv2.findNonZero(mask)
-    # print("2", mask)
     xmin = min([x[0][0] for x in mask])
     ymin = min([x[0][1] for x in mask])
     xmax = max([x[0][0] for x in mask])
