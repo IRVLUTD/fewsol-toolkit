@@ -32,7 +32,7 @@ def parse_args():
                         default='*depth.png', type=str)
     parser.add_argument('--color', dest='color_name',
                         help='color image pattern',
-                        default='*color.png', type=str)
+                        default='*color.jpg', type=str)
     parser.add_argument('--meta', dest='meta_name',
                         help='meta file pattern',
                         default='*meta.mat', type=str)
@@ -45,6 +45,8 @@ def parse_args():
 
 def draw_reticle(img, x, y, label_color):
     white = (255,255,255)
+    x = int(x)
+    y = int(y)
     cv2.circle(img,(x,y),10,label_color,1)
     cv2.circle(img,(x,y),11,white,1)
     cv2.circle(img,(x,y),12,label_color,1)
