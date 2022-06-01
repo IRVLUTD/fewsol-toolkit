@@ -37,7 +37,9 @@ def crop(mask, orig_img):
     '''
     Crop masked segment of original image
     '''
+    # print("1", mask)
     mask = cv2.findNonZero(mask)
+    # print("2", mask)
     xmin = min([x[0][0] for x in mask])
     ymin = min([x[0][1] for x in mask])
     xmax = max([x[0][0] for x in mask])
@@ -69,7 +71,9 @@ def get_class_name(dir_path):
     Read name.txt containing class name
     '''
     with open(os.path.join(dir_path, "name.txt"), 'r') as class_name_file:
-        return class_name_file.read().strip() # only single line exists
+         # only single line exists
+        return class_name_file.read().strip()\
+                .replace(' ', '_').replace("\'","").replace('&','')
 
 
 def save_mapper(out_dir, filename, obj):

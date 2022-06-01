@@ -43,7 +43,7 @@ for dir in tqdm(os.listdir(args.real_obj_data_loc)):
         img_mask = cv2.imread(mask_file, cv2.IMREAD_GRAYSCALE)
         orig_img = cv2.imread(jpg_img_path)
         cropped_img = helpers.crop(img_mask, orig_img)
-        cropped_img_name = f"{class_name.replace(' ', '_')}-#{helpers.hashify(dir)}-{image_code}.png";
+        cropped_img_name = f"{class_name}-#{helpers.hashify(dir)}-{image_code}.png";
         cv2.imwrite(f"{os.path.join(out_support_dir, cropped_img_name)}", cropped_img)
 
 # Save mapper
@@ -71,18 +71,13 @@ for dir in tqdm(os.listdir(args.ocid_data_loc)):
         helpers.mkdirp(out_query_dir)
                     
         # keep mask of required object
-        object_pixel_value = meta_data['object_id'][0][0]
+        object_pixel_value = meta_data['max_label'][0][0]
         mask = np.where(img_mask == object_pixel_value, 1, 0)
 
-        try:
-            cropped_img = helpers.crop(mask, orig_img)
-            cropped_img_name = f"{dir}-{class_name.replace(' ', '_')}-#{helpers.hashify(image_code)}.png";
-            cropped_img_parent_mapper[cropped_img_name]=f"{meta_data['seq_name'][0]}/{meta_data['image_name'][0]}"
-            cv2.imwrite(os.path.join(out_query_dir, cropped_img_name), cropped_img)
-        except:
-            # raise Exception(f"Object id {object_pixel_value} doesn't exist in the current mask")
-            logging.debug(f"Object id {object_pixel_value} doesn't exist in the current mask")
-            continue
+        cropped_img = helpers.crop(mask, orig_img)
+        cropped_img_name = f"{dir}-{class_name}-#{helpers.hashify(image_code)}.png";
+        cropped_img_parent_mapper[cropped_img_name]=f"{meta_data['seq_name'][0]}/{meta_data['image_name'][0]}"
+        cv2.imwrite(os.path.join(out_query_dir, cropped_img_name), cropped_img)
 
 # Save mapper
 helpers.save_mapper(args.out_dir, "ocid_cropped_img_parent_mapper.json", cropped_img_parent_mapper)

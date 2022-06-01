@@ -39,7 +39,7 @@ for dir in tqdm(os.listdir(args.syn_data_loc)):
         img_mask = cv2.imread(mask_file, cv2.IMREAD_GRAYSCALE)
         orig_img = cv2.imread(jpg_img_path)
         cropped_img = helpers.crop(img_mask, orig_img)
-        cropped_img_name = f"{class_name.replace(' ', '_')}-#{helpers.hashify(dir)}-{image_code}.png";
+        cropped_img_name = f"{class_name}-#{helpers.hashify(dir)}-{image_code}.png";
         cv2.imwrite(f"{os.path.join(out_support_dir, cropped_img_name)}", cropped_img)
 
 # Save mapper
@@ -74,7 +74,7 @@ for dir in tqdm(os.listdir(args.google_scenes_data_loc)):
             
             try:
                 cropped_img = helpers.crop(mask, orig_img)
-                cropped_img_name = f"{dir}-{class_name.replace(' ', '_')}-#{helpers.hashify(dir)}-{image_code}-id-{object_pixel_value}.png";
+                cropped_img_name = f"{dir}-{class_name}-#{helpers.hashify(dir)}-{image_code}-id-{object_pixel_value}.png";
                 cv2.imwrite(os.path.join(out_query_dir, cropped_img_name), cropped_img)
             except:
                 # raise Exception(f"Object id {object_pixel_value} doesn't exist in the current mask")
