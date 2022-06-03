@@ -140,8 +140,9 @@ class Window():
   def __init__(self, dataloader):
     self.dataloader = dataloader
 
-    self.config = gl.Config(double_buffer=True, samples=8)  # MSAA
-    self.window = pyglet.window.Window(config=self.config, resizable=True)
+    # self.config = gl.Config(double_buffer=True, samples=8)  # MSAA
+    # self.window = pyglet.window.Window(config=self.config, resizable=True)
+    self.window = pyglet.window.Window(resizable=True)
 
     self.state = AppState(num_cameras=self.dataloader.num_cameras)
 
