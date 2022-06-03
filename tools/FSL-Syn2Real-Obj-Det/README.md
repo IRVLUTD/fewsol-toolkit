@@ -6,8 +6,11 @@ pip install -r requirements.txt
 # 1. Create training set
 python createTrainingDataset.py --google_scenes_data <path-1.1> --syn_data_loc <path-2.1> --out_dir <path-3.1>
 
-# 2. Create test set
+# 2. Create test set using Real objects and OCID ground truth segmentation masks
 python createTestDataset.py --ocid_data_loc <path-1.2> --real_obj_data_loc <path-2.2> --out_dir <path-3.2>
+
+# Optional. Create test set using Real objects and OCID custom segmentation network output masks
+python createSegmentationTestDataset.py --ocid_data_loc <path-1.3> --real_obj_data_loc <path-2.2> --out_dir <path-3.3>
 
 # 3. move path-3.1 and path-3.2 to a new directory, say <path>
 
