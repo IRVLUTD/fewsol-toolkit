@@ -1,1 +1,7 @@
 pyglet==1.3.2
+transforms3d
+pyyaml
+opencv-python
+scipy
+matplotlib
+pandas
