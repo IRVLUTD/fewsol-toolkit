@@ -12,7 +12,7 @@ The dataset should have the following structure.
 ```angular2html
 ├── ...
 ├── FewSOL
-|   |── google_scan_selected     # 3D models from the Google Scanned Objects
+|   |── google_scan_selected    # 3D models from the Google Scanned Objects
 |   |   |── 11pro_SL_TRX_FG
 |   |   |── 2_of_Jenga_Classic_Game
 |   |   └── ...
@@ -61,6 +61,13 @@ conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch -c cond
 5. (optional) install the [ar_track_alvar](http://wiki.ros.org/ar_track_alvar) ros package
 
 
+## Regarding Object Poses in the Real Object Data
+The object pose is computed using RANSAC with the AR tags poses.
+We assume the object is in the center of the marker board, and compute the center of the marker board as the object pose.
+The function to compute the object pose is the compute_marker_board_center() function in tools/image_loader.py.
+Please check this function if you want to use the object poses in our dataset.
+
+
 ## Visualization of data
 
 - View real images
@@ -103,3 +110,14 @@ rosrun rviz rviz -d ./ros/artag.rviz
 roslaunch ar_track_alvar realsense_indiv.launch
 roslaunch easy_handeye publish_eye_on_hand.launch
 ```
+
+## Citation
+
+If you find the FewSOL dataset useful in your research, please consider citing:
+
+	@article{chao2022fewsol,
+	  title={FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments},
+	  author={Jishnu Jaykumar P, Chao, Yu-Wei and Xiang, Yu and others},
+	  journal={arXiv preprint arXiv:2207.03333},
+	  year={2022}
+	}
