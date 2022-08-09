@@ -115,9 +115,9 @@ roslaunch easy_handeye publish_eye_on_hand.launch
 
 If you find the FewSOL dataset useful in your research, please consider citing:
 
-	@article{chao2022fewsol,
+	@article{p2022fewsol,
 	  title={FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments},
-	  author={Jishnu Jaykumar P, Chao, Yu-Wei and Xiang, Yu and others},
+	  author={Jishnu Jaykumar P, Chao, Yu-Wei and Xiang, Yu},
 	  journal={arXiv preprint arXiv:2207.03333},
 	  year={2022}
 	}
