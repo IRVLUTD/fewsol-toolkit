@@ -117,9 +117,7 @@ If you find the FewSOL dataset useful in your research, please consider citing:
 
 	@article{p2023fewsol,
 	  title = {FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments},
-	  publisher = {IEEE ICRA},
 	  author = {P, Jishnu Jaykumar and Chao, Yu-Wei and Xiang, Yu},
 	  journal = {IEEE International Conference on Robotics and Automation (ICRA)},
 	  year = {2023},
-	  organization = {IEEE},
 	}
