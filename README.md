@@ -114,10 +114,13 @@ roslaunch easy_handeye publish_eye_on_hand.launch
 ## Citation
 
 If you find the FewSOL dataset useful in your research, please consider citing:
-
-	@article{p2023fewsol,
-	  title = {FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments},
-	  author = {P, Jishnu Jaykumar and Chao, Yu-Wei and Xiang, Yu},
-	  journal = {IEEE International Conference on Robotics and Automation (ICRA)},
-	  year = {2023},
-	}
+```bibtex
+@INPROCEEDINGS{padalunkal2023fewsol,
+  title={FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments}, 
+  author={P, Jishnu Jaykumar and Chao, Yu-Wei and Xiang, Yu},
+  booktitle={2023 IEEE International Conference on Robotics and Automation (ICRA)}, 
+  doi={10.1109/ICRA48891.2023.10161143},
+  pages={9140-9146},
+  year={2023}
+}
+```
